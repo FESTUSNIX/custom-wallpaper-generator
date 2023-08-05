@@ -47,8 +47,7 @@ const Canvas = forwardRef((props, ref) => {
 		toPng(canvasElement.current, {
 			cacheBust: true,
 			canvasHeight: 1080,
-			canvasWidth: 1920,
-			filter: filter
+			canvasWidth: 1920
 		})
 			.then(dataUrl => {
 				const link = document.createElement('a')
@@ -67,11 +66,6 @@ const Canvas = forwardRef((props, ref) => {
 		}
 	}))
 
-	const filter = (node: HTMLElement) => {
-		const exclusionClasses = ['remove-me', 'secret-div']
-		return !exclusionClasses.some(classname => node.classList?.contains(classname))
-	}
-
 	return (
 		<div className='h-fit w-full aspect-video border-b alpha-bg'>
 			<div
@@ -87,9 +81,6 @@ const Canvas = forwardRef((props, ref) => {
 						</div>
 					</Draggable>
 				)}
-				{/* <h1 className='text-9xl mix-blend-color-dodge text-center cursor-grab active:cursor-grabbing absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none font-black z-10'>
-					HELLO
-				</h1> */}
 
 				<svg width='0' height='0'>
 					<defs>
@@ -114,7 +105,7 @@ const Canvas = forwardRef((props, ref) => {
 				</svg>
 
 				<p
-					className='select-none origin-top-left absolute top-[-50%] left-[-50%] w-[200%] text-[#ff0000] z-10'
+					className='select-none origin-top-left absolute top-[-50%] left-[-50%] w-[200%] z-10'
 					style={{
 						fontSize: canvasWidth / (100 - bgTextSize),
 						transform: `rotate(${bgTextRotation}deg)`,
